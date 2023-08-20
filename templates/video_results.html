@@ -1,0 +1,18 @@
+{% extends 'layout.html' %}
+{% block content %}
+<div align="center">
+    <div class="card" style="width: 55rem;height: 500px;margin-top: 30px;">
+        <div class="card-body" style="padding: 0px,0px,0px,0px;height:400px;background-color: #e5e5e5">
+            <h2>Read data from qr codes ({{ qr_data | length }}):</h2>
+            <hr>
+            <div style="width:95%;overflow-y: scroll; height:400px;font-size: 25px;text-align:left">
+                <ul>
+                    {% for data in qr_data %}
+                        <li>{{ data }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

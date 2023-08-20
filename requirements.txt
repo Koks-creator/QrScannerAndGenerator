@@ -1,0 +1,4 @@
+Flask==2.2.2
+numpy==1.18.5
+opencv_python_headless==4.5.4.60
+qrcode==7.4.2

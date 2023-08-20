@@ -1,0 +1,39 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+<div align="center">
+    <div class="card" style="width: 55rem;height: 48rem;margin-top: 30px;">
+        <div class="card-body" style="padding: 10px,0px,0px,0px;background-color: #e5e5e5">
+            <h2>Scan QR codes using your webcam</h2>
+            <hr>
+            <div style="width:95%">
+                <div style="float: left">
+                    <a href="{{ url_for('webcam_results') }}">
+                        <button type="button" class="btn btn-secondary">See results</button>
+                    </a>
+                </div>
+                <div style="float: right">
+                    <div id="WebcamError" role="alert">
+                    </div>
+                </div>
+            </div>
+            <img src="{{ url_for('get_webcam_output') }}" width="95%" id="webcamStream"
+                 style="margin-top: 15px;border-radius: 12px;"/>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+console.log("sdsd");
+    var image = document.getElementById('webcamStream');
+    console.log(image);
+    image.onerror = function () {
+      var WebcamErrorDiv = document.getElementById('WebcamError');
+      WebcamErrorDiv.innerText = 'Failed to load webcam output';
+      WebcamErrorDiv.className = 'alert alert-danger';
+    };
+
+</script>
+{% endblock content %}

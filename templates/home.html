@@ -1,0 +1,58 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div align="center" class="homeMainDiv">
+     <div class="card" style="width: 55rem;max-height: 55rem;margin-top: 30px;">
+        <div class="card-body" style="padding: 50px,0px,0px,0px; background-color: #e5e5e5">
+            <h1>Generate QR code</h1>
+            <hr>
+            <br>
+            <form method="post" id="QrForm">
+                <div class="row">
+                    <div class="col">
+                        <div class="mb-3">
+                        <label for="BoxSizeInput" class="form-label">Box Size</label>
+                        <input name="BoxSize" id="BoxSizeInput"  class="form-control" type="number" style="width: 410px;"
+                               min="{{ qr_size_range[0] }}" max="{{ qr_size_range[1] }}" required>
+                    </div>
+                    </div>
+                    <div class="col">
+                      <div class="mb-3">
+                        <label for="BorderSizeInput" class="form-label">Border Size</label>
+                        <input name="BorderSize" id="BorderSizeInput" type="number" class="form-control" style="width: 410px;"
+                               min="{{ qr_border_range[0] }}" max="{{ qr_border_range[1] }}" required>
+                      </div>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="QrDataInput" class="form-label">Data (text, url for your QR)</label>
+                    <input name="QrData" id="QrDataInput" type="text" class="form-control" required>
+                </div>
+
+                <button class="btn btn-outline-secondary" style="width: 300px;height:50px;">Submit</button>
+                <br>
+                <br>
+
+                {% if uri %}
+                    <div>
+                        <a href="{{ url_for('download') }}">
+                            <button type="button" class="btn btn-outline-secondary">Download</button>
+                        </a>
+
+                    </div>
+                    <p>Image size: {{ qr_img.size }}</p>
+                    <img class="GigaImg" src="{{ uri }}">
+                    <br>
+                        <script type="text/javascript" defer>
+                            document.getElementById("BoxSizeInput").value = "{{ qr_img.box_size }}";
+                            document.getElementById("BorderSizeInput").value = "{{ qr_img.border }}";
+                            document.getElementById("QrDataInput").value = "{{ qr_data }}";
+                        </script>
+                    <br>
+                {% endif %}
+            </form>
+        </div>
+     </div>
+</div>
+
+{% endblock content %}
